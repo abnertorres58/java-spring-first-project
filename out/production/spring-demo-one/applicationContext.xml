@@ -19,6 +19,13 @@
 
     </bean>
 
+    <bean id="myCricketCoach"
+          class="com.luv2code.springdemo.CricketCoach">
+
+        <!-- set up setter injection -->
+        <property name="fortuneService" ref="myFortune"/>
+    </bean>
+
     <bean id="myLoggerConfig" class="com.luv2code.springdemo.MyLoggerConfig" init-method="initLogger">
         <property name="rootLoggerLevel" value="FINE" />
         <property name="printedLoggerLevel" value="FINE"/>
