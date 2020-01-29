@@ -12,15 +12,21 @@
     <context:property-placeholder location="classpath:sport.properties"/>
 
     <!-- Define your beans here -->
-    <bean id="myCoach"
-            class="com.luv2code.springdemo.TrackCoach">
-        <constructor-arg ref="myFortune"/>
 
-    </bean>
 
+    <!--  Define the dependency  -->
     <bean id="myFortune"
             class="com.luv2code.springdemo.HappyFortuneService">
 
+    </bean>
+
+    <bean id="myFortuneService"
+          class="com.luv2code.springdemo.RandomFortuneService"/>
+
+
+    <bean id="myCoach"
+          class="com.luv2code.springdemo.TrackCoach">
+        <constructor-arg ref="myFortune"/>
     </bean>
 
     <bean id="myCricketCoach"
@@ -32,6 +38,12 @@
         <!-- inject literal values-->
         <property name="emailAddress" value="${foo.email}"/>
         <property name="team" value="${foo.team}"/>
+    </bean>
+
+    <bean id="myGolfCoach"
+          class="com.luv2code.springdemo.GolfCoach">
+        <!--  Set up constructor injection   -->
+        <constructor-arg ref="myFortuneService"/>
     </bean>
 
     <bean id="myLoggerConfig" class="com.luv2code.springdemo.MyLoggerConfig" init-method="initLogger">
